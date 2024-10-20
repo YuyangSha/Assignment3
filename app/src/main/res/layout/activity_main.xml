@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/province1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yunnan Province" />
+
+    <Button
+        android:id="@+id/province2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sichuan Province" />
+
+    <Button
+        android:id="@+id/province3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zhejiang Province" />
+
+    <Button
+        android:id="@+id/my_bookings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Bookings" />
+</LinearLayout>
