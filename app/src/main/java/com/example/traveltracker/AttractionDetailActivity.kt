@@ -3,15 +3,18 @@ package com.example.traveltracker
 import android.content.Context
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.traveltracker.R
 
 class AttractionDetailActivity : AppCompatActivity() {
     private var isBooked = false
     private lateinit var attractionName: String
+    private lateinit var ratingBar: RatingBar
+    private lateinit var commentEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +40,25 @@ class AttractionDetailActivity : AppCompatActivity() {
         findViewById<Button>(R.id.cancel_button).setOnClickListener { cancelBooking() }
         findViewById<Button>(R.id.back_button).setOnClickListener { finish() }
 
+        // 初始化 RatingBar 和 EditText
+        ratingBar = findViewById(R.id.ratingBar)
+        commentEditText = findViewById(R.id.commentEditText)
+
+        findViewById<Button>(R.id.submitButton).setOnClickListener {
+            val rating = ratingBar.rating
+            val comment = commentEditText.text.toString()
+
+            // 处理用户的评分和评论
+            Toast.makeText(this, "Rating: $rating, Comment: $comment", Toast.LENGTH_SHORT).show()
+            // 这里可以添加保存数据的逻辑，例如保存到数据库或 SharedPreferences
+        }
+
         // 更新按钮状态
         updateBookingButtonState()
     }
 
     private fun setupVisitorCounts() {
+        // 这里实现更新访客数量的逻辑
         val visitorCounts = "Visitor Counts:\n" +
                 "Spring: 500 people\n" +
                 "Summer: 1000 people\n" +
@@ -68,7 +85,7 @@ class AttractionDetailActivity : AppCompatActivity() {
             BookingManager.removeBooking(attractionName) // 移除预定
             isBooked = false
             saveBookingStatus(attractionName, false) // 保存取消状态
-            Toast.makeText(this, "Booking for $attractionName cancelled", Toast.LENGTH_SHORT).show() // 提示已取消
+            Toast.makeText(this, "Booking for $attractionName cancelled", Toast.LENGTH_SHORT).show()
             updateBookingButtonState()
         } else {
             Toast.makeText(this, "No booking to cancel", Toast.LENGTH_SHORT).show()
